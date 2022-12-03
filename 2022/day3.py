@@ -1,24 +1,20 @@
-LOWER = 'abcdefghijklmnopqrstuvwxyz'
-UPPER = LOWER.upper()
-
+CHARS = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
 def get_score(char):
-   if char in LOWER:
-      return LOWER.find(char) +1
-   return UPPER.find(char) + 27
-
+   return CHARS.find(char) + 1
 
 #SOLUTION
 with open('input.txt', 'r') as input_file:
    rucksacks = input_file.read().split('\n')
+
 chars_list = []
-bedges = []
 for items in rucksacks:
-   common_chars = list(set(items[:len(items)//2])
-            .intersection(items[len(items)//2:]))
+   middle = len(items)//2
+   chars_list.append(
+      get_score(list(set(items[:middle]).intersection(items[middle:]))[0])
+   )
 
-   chars_list.append(get_score(common_chars[0]))
-
+bedges = []
 for index in range(0, len(rucksacks[:-2]), 3):
    common_chars = list(
          set(rucksacks[index])
