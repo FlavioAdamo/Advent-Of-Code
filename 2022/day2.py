@@ -25,8 +25,6 @@ def translate_move(move):
    return move
       
 
-
-
 with open('input.txt', 'r') as input:
    moves = input.read().strip().split('\n')
    problem1 = [MOVES[move]for move in moves]
